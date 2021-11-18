@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@700&display=swap');
+  
+
+
+    
+  
+  
+ 
+  
+  
+  img {
+    width: 100%;
+    height: 100%;
+  }
+  
+  
+    
+  
+ 
+  
+
+  
+img{
+  width: 40%;
+  border-radius: 10px;
+  border: 0.5px white solid;
+}
+  #kort{
+    width: 500px;
+   
+border-right:  hsl(237, 18%, 59%) 1px solid;
+    
+   
+    
+  }
+
+  h1{
+    color:rgb(255, 255, 255);
+   
+  }
+
+  h2{
+    color: rgb(244, 247, 240);
+  }
+  
+body{
+  background-color: hsl(235, 16%, 14%);
+  font-family: 'Red Hat Text';
+  font-weight: 700;
+  color:white;
+}
+
+  
+
+  
+  
+  
