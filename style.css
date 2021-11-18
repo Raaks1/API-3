@@ -1,0 +1,9 @@
+
+#memeBtn{
+    width: 120px;
+    height: 45px;
+    border-radius: 20px;
+    border:2px solid;
+    font-weight: bold;
+    font-size: 22px;;
+}
