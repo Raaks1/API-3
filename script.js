@@ -1,82 +1,71 @@
-const memeBtn = document.getElementById('memeBtn');
+/*const photos = 'https://api.thecatapi.com/v1/images/search';
+const words = 'https://random-word-api.herokuapp.com/word?number=5';
 
-memeBtn.addEventListener('click', generateMeme)
 
 
-const words = 'https://random-word-api.herokuapp.com/word?number=8';
+function checkStatus(res) {
+    if (!res.ok) Promise.reject(new Error(res.statusText));
+    return Promise.resolve(res.json());
+  }
+
+const renderImage = (imgUrl) => {
+    const wrap = document.getElementById('image-wrap');
+    
+    const img = document.createElement('img');
+    img.src = imgUrl;
+    wrap.append(img);
+}
+
+
 const renderText = (ord) => {
-  const wrap = document.getElementById('text-wrap');
-  let text = null ;
-  ord.forEach(word => text += `${word} `);
-  wrap.append(text);
+    const wrap = document.getElementById('text-wrap');
+    let text = null ;
+    ord.forEach(word => text += `${word} `);
+    wrap.append(text);
+        
+   
 }
 
+async function renderCard() {
+    try {
+        const photoApi = await fetch(photos);
+        const photoApiData = await checkStatus(photoApi);
+        const wordsApi = await fetch(words);
+        const wordsApiData = await checkStatus(wordsApi);
 
-async function generateMeme() {
-const res = await fetch('https://api.imgflip.com/get_memes')
-const data = await res.json();
-if (!res.ok) {
-  throw new Error(`HTTP error! status: ${response.status}`);
+        const photoImgUrl = photoApiData[0].url
+        renderImage(photoImgUrl);
+        renderText(wordsApiData);
+
+    } catch(error) {
+        console.log('Error:' , error)
+    }
 }
 
-console.log(data) 
-console.log(data.data.memes)
+renderCard();*/
 
+
+
+async function renderUsers() {
+    let response = await fetch('https://api.github.com/users?number=10');
+    console.log(response);
+    let data = await response.json()
+    console.log(data)
     
-
-     
-      let i = Math.floor(Math.random() * 101);
-      console.log(i);
-      let previousImage = document.querySelector('img');
-      let previoush2 = document.querySelector('h2');
-     
-      
-      if( previousImage !== null ) {
-        document.body.querySelector('.container').removeChild(previousImage);
-        document.body.querySelector('.container').removeChild(previoush2);
+    let render = "";
+    data.map((values)=>{
         
-      }
-    
-      
-      
-      console.log(previousImage);
-
-      
-      let image = document.createElement('img');
-      image.src = data.data.memes[i].url
-      
-      let header = document.createElement('h2');
-      
-      header.textContent = data.data.memes[i].name
-      document.body.querySelector('.container').appendChild(header);
-      document.body.querySelector('.container').appendChild(image);
-    
-      function myFunction(event){console.log(event)
-        if(event.target.id === "memeBtn"){
-          document.querySelector(".container").style.background = 'silver';
-         
-        }
-      }
-      document.getElementById("memeBtn").addEventListener("focus", (event)=>myFunction(event));
-    
-          
-
-      function changeColor(event)
-          {
-
-          if(event.target.id === "memeBtn"){
-            document.querySelector(".container").style.background = 'white';
-            console.log(event.currentTarget);
-          } 
-
-        }
-          
-          document.getElementById("memeBtn").addEventListener("blur",(event)=>changeColor(event));  
-          
-          
+        render +=`<div class="box">
+        <img src =${values.avatar_url}>
+        <h1> Username: ${values.login}</h1>
+        <h2>ID: ${values.id}</h2>
+        <h3>ID_Node: ${values.node_id}</h3>      
+        <h4>URL: ${values.avatar_url}"</h4>
+        </div>`
         
-      };
+    });
+    document.getElementById("kort").innerHTML=render;
+    
 
-   
-    generateMeme();
-   
+}
+renderUsers();
